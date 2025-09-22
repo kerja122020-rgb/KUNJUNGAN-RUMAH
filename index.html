@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal UPTD Puskesmas Ganra</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .gradient-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'%3E%3Cdefs%3E%3ClinearGradient id='bg1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23ffffff;stop-opacity:0.1'/%3E%3Cstop offset='100%25' style='stop-color:%23ffffff;stop-opacity:0.05'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg fill='white' fill-opacity='0.1'%3E%3Ccircle cx='200' cy='150' r='80'/%3E%3Ccircle cx='800' cy='200' r='60'/%3E%3Ccircle cx='1000' cy='400' r='100'/%3E%3Ccircle cx='300' cy='600' r='70'/%3E%3Cpath d='M400,300 L450,250 L500,300 L450,350 Z'/%3E%3Cpath d='M700,500 L750,450 L800,500 L750,550 Z'/%3E%3Cpath d='M100,400 Q150,350 200,400 T300,400'/%3E%3Cpath d='M900,100 Q950,50 1000,100 T1100,100'/%3E%3C/g%3E%3Cg fill='white' fill-opacity='0.05'%3E%3Cpath d='M0,600 Q300,500 600,600 T1200,600 L1200,800 L0,800 Z'/%3E%3C/g%3E%3C/svg%3E");
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+        }
+        .gradient-bg > * {
+            position: relative;
+            z-index: 2;
+        }
+        .medical-bg {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600'%3E%3Cdefs%3E%3Cpattern id='medical-pattern' x='0' y='0' width='100' height='100' patternUnits='userSpaceOnUse'%3E%3Cg fill='%23e0f2fe' fill-opacity='0.3'%3E%3Cpath d='M45,35 L55,35 L55,45 L65,45 L65,55 L55,55 L55,65 L45,65 L45,55 L35,55 L35,45 L45,45 Z'/%3E%3C/g%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23medical-pattern)'/%3E%3Cg fill='%23b3e5fc' fill-opacity='0.2'%3E%3Ccircle cx='150' cy='100' r='30'/%3E%3Ccircle cx='350' cy='200' r='25'/%3E%3Ccircle cx='550' cy='150' r='35'/%3E%3Ccircle cx='750' cy='250' r='20'/%3E%3Ccircle cx='950' cy='180' r='40'/%3E%3Ccircle cx='1100' cy='120' r='28'/%3E%3C/g%3E%3C/svg%3E");
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        .floating-icons {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .floating-icon {
+            position: absolute;
+            color: rgba(59, 130, 246, 0.1);
+            animation: float 20s infinite linear;
+        }
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="medical-bg min-h-screen">
+    <!-- Floating Medical Icons Background -->
+    <div class="floating-icons">
+        <i class="floating-icon fas fa-heartbeat text-4xl" style="left: 10%; animation-delay: 0s;"></i>
+        <i class="floating-icon fas fa-stethoscope text-3xl" style="left: 20%; animation-delay: 2s;"></i>
+        <i class="floating-icon fas fa-pills text-2xl" style="left: 30%; animation-delay: 4s;"></i>
+        <i class="floating-icon fas fa-syringe text-3xl" style="left: 40%; animation-delay: 6s;"></i>
+        <i class="floating-icon fas fa-thermometer text-2xl" style="left: 50%; animation-delay: 8s;"></i>
+        <i class="floating-icon fas fa-band-aid text-3xl" style="left: 60%; animation-delay: 10s;"></i>
+        <i class="floating-icon fas fa-microscope text-2xl" style="left: 70%; animation-delay: 12s;"></i>
+        <i class="floating-icon fas fa-ambulance text-3xl" style="left: 80%; animation-delay: 14s;"></i>
+        <i class="floating-icon fas fa-user-md text-2xl" style="left: 90%; animation-delay: 16s;"></i>
+        <i class="floating-icon fas fa-hospital text-4xl" style="left: 15%; animation-delay: 18s;"></i>
+    </div>
+    <!-- Header -->
+    <header class="gradient-bg text-white shadow-lg">
+        <div class="container mx-auto px-6 py-8">
+            <div class="flex items-center justify-center mb-6">
+                <div class="bg-white p-4 rounded-full mr-4">
+                    <i class="fas fa-hospital text-blue-600 text-3xl"></i>
+                </div>
+                <div class="text-center">
+                    <h1 class="text-4xl font-bold mb-2">UPTD PUSKESMAS GANRA</h1>
+                    <p class="text-xl opacity-90">Portal Layanan Kesehatan Masyarakat</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contact Information -->
+    <section class="bg-white bg-opacity-95 backdrop-blur-sm shadow-md">
+        <div class="container mx-auto px-6 py-8">
+            <!-- Address Section -->
+            <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-6 mb-8 border border-blue-100">
+                <div class="flex items-start space-x-4">
+                    <div class="bg-blue-600 p-3 rounded-full">
+                        <i class="fas fa-map-marker-alt text-white text-xl"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">
+                            <i class="fas fa-hospital text-blue-600 mr-2"></i>
+                            Lokasi Puskesmas
+                        </h3>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <p class="text-gray-700 leading-relaxed">
+                                    <span class="font-semibold">Alamat Lengkap:</span><br>
+                                    Jalan Poros Bakke<br>
+                                    Desa Ganra, Kecamatan Ganra<br>
+                                    Kabupaten Soppeng<br>
+                                    Provinsi Sulawesi Selatan
+                                </p>
+                            </div>
+                            <div class="flex items-center justify-center md:justify-end">
+                                <button onclick="openMaps()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 shadow-lg">
+                                    <i class="fas fa-directions mr-2"></i>
+                                    Lihat di Peta
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Grid -->
+            <div class="grid md:grid-cols-4 gap-6">
+                <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6 text-center border border-green-200 hover:shadow-lg transition-all">
+                    <div class="bg-green-600 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fab fa-whatsapp text-white text-xl"></i>
+                    </div>
+                    <p class="font-bold text-gray-800 mb-1">WhatsApp</p>
+                    <p class="text-gray-600 text-sm mb-3">082-348-550-595</p>
+                    <button onclick="contactWhatsApp()" class="text-green-600 hover:text-green-700 font-semibold text-sm">
+                        <i class="fas fa-external-link-alt mr-1"></i>Hubungi
+                    </button>
+                </div>
+
+                <div class="bg-gradient-to-br from-red-50 to-red-100 rounded-xl p-6 text-center border border-red-200 hover:shadow-lg transition-all">
+                    <div class="bg-red-600 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-envelope text-white text-xl"></i>
+                    </div>
+                    <p class="font-bold text-gray-800 mb-1">Email</p>
+                    <p class="text-gray-600 text-sm mb-3">puskesmasganra17@gmail.com</p>
+                    <button onclick="contactEmail()" class="text-red-600 hover:text-red-700 font-semibold text-sm">
+                        <i class="fas fa-external-link-alt mr-1"></i>Kirim Email
+                    </button>
+                </div>
+
+                <div class="bg-gradient-to-br from-pink-50 to-pink-100 rounded-xl p-6 text-center border border-pink-200 hover:shadow-lg transition-all">
+                    <div class="bg-pink-600 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fab fa-instagram text-white text-xl"></i>
+                    </div>
+                    <p class="font-bold text-gray-800 mb-1">Instagram</p>
+                    <p class="text-gray-600 text-sm mb-3">@puskesmasganra</p>
+                    <button onclick="contactInstagram()" class="text-pink-600 hover:text-pink-700 font-semibold text-sm">
+                        <i class="fas fa-external-link-alt mr-1"></i>Follow
+                    </button>
+                </div>
+
+                <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-6 text-center border border-purple-200 hover:shadow-lg transition-all">
+                    <div class="bg-purple-600 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-clock text-white text-xl"></i>
+                    </div>
+                    <p class="font-bold text-gray-800 mb-1">Jam Operasional</p>
+                    <p class="text-gray-600 text-sm mb-1">Senin - Sabtu</p>
+                    <p class="text-gray-600 text-sm">08:00 - 14:00 WITA</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12">
+        <!-- Forms Section Header -->
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">
+                <i class="fas fa-clipboard-list text-blue-600 mr-3"></i>
+                FORMULIR KUNJUNGAN RUMAH
+            </h2>
+            <p class="text-gray-600 text-lg">Klik Pada Formulir Yang Dibutuhkan Untuk Mengakses Layanan</p>
+        </div>
+
+        <!-- Forms Grid -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Form 1 -->
+            <div class="bg-white bg-opacity-90 backdrop-blur-sm rounded-xl shadow-lg p-6 card-hover cursor-pointer border-l-4 border-blue-500" onclick="openForm('data-keluarga')">
+                <div class="flex items-start space-x-4">
+                    <div class="bg-gradient-to-br from-blue-400 to-blue-600 p-4 rounded-xl shadow-lg transform hover:scale-110 transition-all">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M16 4c0-1.11.89-2 2-2s2 .89 2 2-.89 2-2 2-2-.89-2-2zM4 18v-4h3v4h2v-4h2l-3-4-3 4h2v4H4zm14-8c-1.28 0-2.56.93-2.9 2.1-.21.73-.1 1.43.4 1.9l.5.5v2.5h5V15l.5-.5c.5-.47.61-1.17.4-1.9C18.56 11.93 17.28 11 16 11z"/>
+                        </svg>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-bold text-gray-800 mb-2"> PENDATAAN KELUARGA & ANGGOTA KELUARGA</h3>
+                        <p class="text-gray-600 text-sm mb-3">Aplikasi Pendataan Posyandu</p>
+                        <span class="inline-block bg-gradient-to-r from-blue-100 to-blue-200 text-blue-800 text-xs px-3 py-1 rounded-full font-semibold">📋 Klik untuk akses</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form 2 -->
+            <div class="bg-white bg-opacity-90 backdrop-blur-sm rounded-xl shadow-lg p-6 card-hover cursor-pointer border-l-4 border-pink-500" onclick="openForm('ibu-hamil')">
+                <div class="flex items-start space-x-4">
+                    <div class="bg-gradient-to-br from-pink-400 to-pink-600 p-4 rounded-xl shadow-lg transform hover:scale-110 transition-all">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                        </svg>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-bold text-gray-800 mb-2">KUNJUNGAN RUMAH-IBU HAMIL</h3>
+                        <p class="text-gray-600 text-sm mb-3">Ibu Hamil</p>
+                        <span class="inline-block bg-gradient-to-r from-pink-100 to-pink-200 text-pink-800 text-xs px-3 py-1 rounded-full font-semibold">🤱 Klik untuk akses</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form 3 -->
+            <div class="bg-white bg-opacity-90 backdrop-blur-sm rounded-xl shadow-lg p-6 card-hover cursor-pointer border-l-4 border-purple-500" onclick="openForm('ibu-bersalin')">
+                <div class="flex items-start space-x-4">
+                    <div class="bg-gradient-to-br from-purple-400 to-purple-600 p-4 rounded-xl shadow-lg transform hover:scale-110 transition-all">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                        </svg>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-bold text-gray-800 mb-2">KUNJUNGAN RUMAH - IBU BERSALIN & NIFAS</h3>
+                        <p class="text-gray-600 text-sm mb-3">Ibu Bersalin & Nifas</p>
+                        <span class="inline-block bg-gradient-to-r from-purple-100 to-purple-200 text-purple-800 text-xs px-3 py-1 rounded-full font-semibold">💜 Klik untuk akses</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form 4 -->
+            <div class="bg-white bg-opacity-90 backdrop-blur-sm rounded-xl shadow-lg p-6 card-hover cursor-pointer border-l-4 border-green-500" onclick="openForm('bayi')">
+                <div class="flex items-start space-x-4">
+                    <div class="bg-gradient-to-br from-green-400 to-green-600 p-4 rounded-xl shadow-lg transform hover:scale-110 transition-all">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM8 17.5c-1.38 0-2.5-1.12-2.5-2.5S6.62 12.5 8 12.5s2.5 1.12 2.5 2.5S9.38 17.5 8 17.5zM9.5 8C9.5 6.62 8.38 5.5 7 5.5S4.5 6.62 4.5 8s1.12 2.5 2.5 2.5S9.5 9.38 9.5 8zM16 17.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                        </svg>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-bold text-gray-800 mb-2">KUNJUNGAN RUMAH - BAYI</h3>
+                        <p class="text-gray-600 text-sm mb-3"> Usia 0-6 Bulan </p>
+                        <span class="inline-block bg-gradient-to-r from-green-100 to-green-200 text-green-800 text-xs px-3 py-1 rounded-full font-semibold">👶 Klik untuk akses</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form 5 -->
+            <div class="bg-white bg-opacity-90 backdrop-blur-sm rounded-xl shadow-lg p-6 card-hover cursor-pointer border-l-4 border-yellow-500" onclick="openForm('balita')">
+                <div class="flex items-start space-x-4">
+                    <div class="bg-gradient-to-br from-yellow-400 to-yellow-600 p-4 rounded-xl shadow-lg transform hover:scale-110 transition-all">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-bold text-gray-800 mb-2">KUNJUNGAN RUMAH - BAYI, BALITA & ANAK USIA PRASEKOLAH</h3>
+                        <p class="text-gray-600 text-sm mb-3"> Usia ≥ 6-71 Bulan</p>
+                        <span class="inline-block bg-gradient-to-r from-yellow-100 to-yellow-200 text-yellow-800 text-xs px-3 py-1 rounded-full font-semibold">⭐ Klik untuk akses</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form 6 -->
+            <div class="bg-white bg-opacity-90 backdrop-blur-sm rounded-xl shadow-lg p-6 card-hover cursor-pointer border-l-4 border-indigo-500" onclick="openForm('remaja')">
+                <div class="flex items-start space-x-4">
+                    <div class="bg-gradient-to-br from-indigo-400 to-indigo-600 p-4 rounded-xl shadow-lg transform hover:scale-110 transition-all">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/>
+                        </svg>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-bold text-gray-800 mb-2">KUNJUNGAN RUMAH - USIA SEKOLAH / REMAJA</h3>
+                        <p class="text-gray-600 text-sm mb-3">Usia ≥ 6-<18 Tahun </p>
+                        <span class="inline-block bg-gradient-to-r from-indigo-100 to-indigo-200 text-indigo-800 text-xs px-3 py-1 rounded-full font-semibold">🎓 Klik untuk akses</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form 7 -->
+            <div class="bg-white bg-opacity-90 backdrop-blur-sm rounded-xl shadow-lg p-6 card-hover cursor-pointer border-l-4 border-teal-500" onclick="openForm('dewasa')">
+                <div class="flex items-start space-x-4">
+                    <div class="bg-gradient-to-br from-teal-400 to-teal-600 p-4 rounded-xl shadow-lg transform hover:scale-110 transition-all">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-bold text-gray-800 mb-2">KUNJUNGAN RUMAH - USIA DEWASA</h3>
+                        <p class="text-gray-600 text-sm mb-3">Usia ≥ 18-59 Tahun</p>
+                        <span class="inline-block bg-gradient-to-r from-teal-100 to-teal-200 text-teal-800 text-xs px-3 py-1 rounded-full font-semibold">👨‍💼 Klik untuk akses</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form 8 -->
+            <div class="bg-white bg-opacity-90 backdrop-blur-sm rounded-xl shadow-lg p-6 card-hover cursor-pointer border-l-4 border-orange-500" onclick="openForm('lansia')">
+                <div class="flex items-start space-x-4">
+                    <div class="bg-gradient-to-br from-orange-400 to-orange-600 p-4 rounded-xl shadow-lg transform hover:scale-110 transition-all">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M13 1.07V9h7c0-4.08-3.05-7.44-7-7.93zM4 15c0 4.42 3.58 8 8 8s8-3.58 8-8v-4H4v4zm7-13.93C7.05 1.56 4 4.92 4 9h7V1.07z"/>
+                        </svg>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-bold text-gray-800 mb-2">KUNJUNGAN RUMAH - LANSIA</h3>
+                        <p class="text-gray-600 text-sm mb-3">Usia 60 Tahun Keatas</p>
+                        <span class="inline-block bg-gradient-to-r from-orange-100 to-orange-200 text-orange-800 text-xs px-3 py-1 rounded-full font-semibold">👴 Klik untuk akses</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form 9 -->
+            <div class="bg-white bg-opacity-90 backdrop-blur-sm rounded-xl shadow-lg p-6 card-hover cursor-pointer border-l-4 border-red-500" onclick="openForm('tbc')">
+                <div class="flex items-start space-x-4">
+                    <div class="bg-gradient-to-br from-red-400 to-red-600 p-4 rounded-xl shadow-lg transform hover:scale-110 transition-all">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-bold text-gray-800 mb-2">KUNJUNGAN RUMAH - PENGENDALIAN PENYAKIT MENULAR (TBC)</h3>
+                        <p class="text-gray-600 text-sm mb-3">Pengendalian Penyakit Menular (TBC)</p>
+                        <span class="inline-block bg-gradient-to-r from-red-100 to-red-200 text-red-800 text-xs px-3 py-1 rounded-full font-semibold">🫁 Klik untuk akses</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Contact Section -->
+        <div class="mt-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-white text-center">
+            <h3 class="text-2xl font-bold mb-4">Butuh Bantuan?</h3>
+            <p class="mb-6 opacity-90">Tim kami siap membantu Anda</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <button onclick="contactWhatsApp()" class="bg-green-500 hover:bg-green-600 px-6 py-3 rounded-lg font-semibold transition-colors">
+                    <i class="fab fa-whatsapp mr-2"></i>WhatsApp
+                </button>
+                <button onclick="contactEmail()" class="bg-red-500 hover:bg-red-600 px-6 py-3 rounded-lg font-semibold transition-colors">
+                    <i class="fas fa-envelope mr-2"></i>Email
+                </button>
+                <button onclick="contactInstagram()" class="bg-pink-500 hover:bg-pink-600 px-6 py-3 rounded-lg font-semibold transition-colors">
+                    <i class="fab fa-instagram mr-2"></i>Instagram
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 mt-16">
+        <div class="container mx-auto px-6 text-center">
+            <div class="mb-4">
+                <i class="fas fa-hospital text-3xl text-blue-400 mb-2"></i>
+                <h4 class="text-xl font-bold">UPTD PUSKESMAS GANRA</h4>
+            </div>
+            <p class="text-gray-400 mb-4">SAHABAT MENUJU SEHAT</p>
+            <div class="border-t border-gray-700 pt-4">
+                <p class="text-gray-500">&copy; 2025 UPTD PUSKESMAS GANRA. SEMUA HAK DILINDUNGI</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal for Form Access -->
+    <div id="formModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white rounded-xl p-8 max-w-md mx-4">
+            <div class="text-center">
+                <i class="fas fa-info-circle text-blue-600 text-4xl mb-4"></i>
+                <h3 class="text-xl font-bold mb-4">Akses Formulir</h3>
+                <p class="text-gray-600 mb-6" id="modalMessage">Formulir akan dibuka di tab baru</p>
+                <div class="flex gap-4 justify-center">
+                    <button onclick="closeModal()" class="px-6 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 transition-colors">
+                        Batal
+                    </button>
+                    <button id="confirmButton" class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                        Lanjutkan
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openForm(formType) {
+            const modal = document.getElementById('formModal');
+            const confirmButton = document.getElementById('confirmButton');
+            const modalMessage = document.getElementById('modalMessage');
+            
+            let url = '';
+            let message = '';
+            
+            switch(formType) {
+                case 'data-keluarga':
+                    message = 'Membuka formulir Data Keluarga dan Anggota Keluarga - Aplikasi Pendataan Posyandu';
+                    url = 'https://kerja122020-rgb.github.io/WEBSITE-KUNJUNGAN-RUMAH-ILP-KELUARGA/'; // Placeholder - ganti dengan URL sebenarnya
+                    break;
+                case 'ibu-hamil':
+                    message = 'Membuka Checklist Kunjungan Rumah - Ibu Hamil';
+                    url = 'https://kerja122020-rgb.github.io/WEBSITE-KUNJUNGAN-RUMAHIBU-HAMIL/';
+                    break;
+                case 'ibu-bersalin':
+                    message = 'Membuka Checklist Kunjungan Rumah - Ibu Bersalin & Nifas';
+                    url = 'https://kerja122020-rgb.github.io/WEBSITE-KUNJUNGAN-RUMAH-IBU-BERSALIN-DAN-NIFAS/';
+                    break;
+                case 'bayi':
+                    message = 'Membuka Checklist Kunjungan Rumah - Bayi (0-6 Bulan)';
+                    url = 'https://kerja122020-rgb.github.io/WEBSITE-KUNJUNGAN-RUMAH-BAYI/';
+                    break;
+                case 'balita':
+                    message = 'Membuka Checklist Kunjungan Rumah - Bayi, Balita dan Anak Usia Pra Sekolah';
+                    url = 'https://kerja122020-rgb.github.io/WEBSITE-KUNJUNGAN-RUMAH-BAYI-BALITA-ANAK-PRASEKOLAH/';
+                    break;
+                case 'remaja':
+                    message = 'Membuka Checklist Kunjungan Rumah - Usia Sekolah / Remaja';
+                    url = 'https://kerja122020-rgb.github.io/KUNJUNGAN-RUMAH-USIA-SEKOLAH-REMAJA/';
+                    break;
+                case 'dewasa':
+                    message = 'Membuka Checklist Kunjungan Rumah - Usia Dewasa';
+                    url = 'https://kerja122020-rgb.github.io/WEBSITE-KUNJUNGAN-RUMAH-USIA-DEWASA/';
+                    break;
+                case 'lansia':
+                    message = 'Membuka Checklist Kunjungan Rumah - Lansia';
+                    url = 'https://kerja122020-rgb.github.io/WEBSITE-KUNJUNGAN-RUMAH-LANSIA/';
+                    break;
+                case 'tbc':
+                    message = 'Membuka Checklist Kunjungan Rumah - Pengendalian Penyakit Menular (TBC)';
+                    url = 'https://kerja122020-rgb.github.io/WEBSITE-KUNJUNGAN-RUMAH-PENGENDALIAN-PENYAKIT-MENULAR-TBC-/';
+                    break;
+            }
+            
+            modalMessage.textContent = message;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            
+            confirmButton.onclick = function() {
+                if (url && url !== '#') {
+                    window.open(url, '_blank', 'noopener,noreferrer');
+                } else {
+                    alert('Formulir ini sedang dalam pengembangan. Silakan hubungi admin untuk informasi lebih lanjut.');
+                }
+                closeModal();
+            };
+        }
+        
+        function closeModal() {
+            const modal = document.getElementById('formModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+        
+        function contactWhatsApp() {
+            window.open('https://wa.me/6282348550595', '_blank', 'noopener,noreferrer');
+        }
+        
+        function contactEmail() {
+            window.open('mailto:puskesmasganra17@gmail.com', '_blank', 'noopener,noreferrer');
+        }
+        
+        function contactInstagram() {
+            window.open('https://instagram.com/puskesmasganra', '_blank', 'noopener,noreferrer');
+        }
+        
+        function openMaps() {
+            const address = 'Jalan Poros Bakke, Desa Ganra, Kecamatan Ganra, Kabupaten Soppeng, Sulawesi Selatan';
+            const encodedAddress = encodeURIComponent(address);
+            window.open(`https://www.google.com/maps/search/${encodedAddress}`, '_blank', 'noopener,noreferrer');
+        }
+        
+        // Close modal when clicking outside
+        document.getElementById('formModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+        
+        // Add some interactive animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.card-hover');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+                card.classList.add('animate-fade-in');
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'982a90c13267ce17',t:'MTc1ODQ2ODIyNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
